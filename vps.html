@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS Hosting Guide — Eaglercraft</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docker.html">Docker</a></li>
+                <li><a href="vps.html" class="active">VPS</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>🖥️ Hosting on a VPS (DigitalOcean, Vultr, Linode)</h1>
+            <p class="tagline">Complete guide to running Eaglercraft on your own cloud server.</p>
+
+            <h2>Why Choose a VPS?</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Cost</th>
+                        <th>Uptime</th>
+                        <th>Control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Codespaces</strong></td>
+                        <td>Free (120 hrs/mo)</td>
+                        <td>Limited</td>
+                        <td>Limited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sealos</strong></td>
+                        <td>Free tier or $5+</td>
+                        <td>Good</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><strong>VPS</strong></td>
+                        <td>$5-20/month</td>
+                        <td>Excellent</td>
+                        <td>Complete</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Best VPS Providers for Eaglercraft</h2>
+
+            <h3>DigitalOcean ($5/month)</h3>
+            <ul class="feature-list">
+                <li>✅ 1 vCPU, 1GB RAM ($5 Droplet)</li>
+                <li>✅ Simple interface</li>
+                <li>✅ Good documentation</li>
+                <li>✅ Free monitoring</li>
+            </ul>
+
+            <h3>Vultr ($2.50-5/month)</h3>
+            <ul class="feature-list">
+                <li>✅ Cheapest option</li>
+                <li>✅ Pay per hour (no commitment)</li>
+                <li>✅ Multiple data centers</li>
+                <li>⚠️ Slightly less user-friendly</li>
+            </ul>
+
+            <h3>Linode ($5/month)</h3>
+            <ul class="feature-list">
+                <li>✅ Very reliable</li>
+                <li>✅ Good community support</li>
+                <li>✅ API for automation</li>
+                <li>✅ North American focus</li>
+            </ul>
+
+            <h2>Recommended Specs for Eaglercraft</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Player Count</th>
+                        <th>vCPU</th>
+                        <th>RAM</th>
+                        <th>Cost/Month</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1-10 players</td>
+                        <td>1 vCPU</td>
+                        <td>512MB-1GB</td>
+                        <td>$5</td>
+                    </tr>
+                    <tr>
+                        <td>10-30 players</td>
+                        <td>2 vCPU</td>
+                        <td>2GB</td>
+                        <td>$10</td>
+                    </tr>
+                    <tr>
+                        <td>30-100 players</td>
+                        <td>4 vCPU</td>
+                        <td>4-8GB</td>
+                        <td>$20-40</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Setup Process (DigitalOcean Example)</h2>
+
+            <h3>Step 1: Create Droplet</h3>
+            <div class="step-list">
+                <li>Go to digitalocean.com</li>
+                <li>Click "Create → Droplets"</li>
+                <li>Choose: Ubuntu 22.04 LTS</li>
+                <li>Choose: $5/month plan</li>
+                <li>Choose: Closest region to you</li>
+                <li>Click "Create Droplet"</li>
+                <li>Wait 2 minutes for boot</li>
+            </div>
+
+            <h3>Step 2: SSH into VPS</h3>
+            <div class="code-block">
+                <pre>$ ssh root@your.vps.ip.address
+(Accept the key fingerprint: yes)
+(Paste password from email)</pre>
+            </div>
+
+            <h3>Step 3: Install Docker</h3>
+            <div class="code-block">
+                <pre>$ apt update && apt upgrade -y
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sh get-docker.sh
+$ rm get-docker.sh</pre>
+            </div>
+
+            <h3>Step 4: Install Docker Compose</h3>
+            <div class="code-block">
+                <pre>$ curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ chmod +x /usr/local/bin/docker-compose
+$ docker-compose --version</pre>
+            </div>
+
+            <h3>Step 5: Deploy Eaglercraft (Same as Codespaces!)</h3>
+            <div class="code-block">
+                <pre>$ mkdir eaglercraft && cd eaglercraft
+$ nano docker-compose.yml
+(Paste the Docker compose config)
+$ docker-compose up -d</pre>
+            </div>
+
+            <h3>Step 6: Set Up Reverse Proxy (Nginx for HTTPS)</h3>
+            <div class="code-block">
+                <pre>$ apt install nginx -y
+$ apt install certbot python3-certbot-nginx -y
+
+(Create nginx config pointing to localhost:5201)
+(Run certbot for free SSL certificate)</pre>
+            </div>
+
+            <h2>Domain Configuration</h2>
+
+            <h3>Option 1: Use VPS IP Directly</h3>
+            <p>Server URL: <code>wss://1.2.3.4:5201</code></p>
+            <p>⚠️ Warning: Self-signed certificate warnings</p>
+
+            <h3>Option 2: Point Domain (Best)</h3>
+            <p>Using Namecheap, GoDaddy, etc.:</p>
+            <div class="step-list">
+                <li>Get domain name ($10-15/year)</li>
+                <li>Point A record to VPS IP</li>
+                <li>Set up Nginx with SSL (Let's Encrypt)</li>
+                <li>Server URL: <code>wss://eaglercraft.yourdomain.com</code></li>
+            </div>
+
+            <h2>Security Best Practices</h2>
+
+            <h3>Essential Security Steps</h3>
+            <ul class="feature-list">
+                <li>✅ Use SSH keys instead of password login</li>
+                <li>✅ Install UFW firewall and only open necessary ports</li>
+                <li>✅ Use SSL/TLS certificates (Let's Encrypt free)</li>
+                <li>✅ Keep system updated: <code>apt update && apt upgrade</code></li>
+                <li>✅ Install fail2ban for attack protection</li>
+                <li>✅ Regular backups of world data</li>
+            </ul>
+
+            <h3>Firewall Config</h3>
+            <div class="code-block">
+                <pre>$ ufw allow 22/tcp   (SSH)
+$ ufw allow 80/tcp   (HTTP, for certbot)
+$ ufw allow 443/tcp  (HTTPS/WSS)
+$ ufw enable</pre>
+            </div>
+
+            <h2>Monitoring & Maintenance</h2>
+
+            <h3>Check Server Resources</h3>
+            <div class="code-block">
+                <pre>$ docker ps              (running containers)
+$ docker logs -f eaglercraft  (see logs)
+$ df -h                (disk usage)
+$ free -h              (RAM usage)
+$ top                  (CPU usage)</pre>
+            </div>
+
+            <h3>Restart Server Safely</h3>
+            <div class="code-block">
+                <pre>$ docker-compose restart
+(Wait 60 seconds for graceful shutdown)
+(Server auto-restarts)</pre>
+            </div>
+
+            <h2>Troubleshooting VPS Issues</h2>
+
+            <h3>❌ Server Won't Start</h3>
+            <ul class="feature-list">
+                <li>Check: <code>docker-compose logs</code></li>
+                <li>Check port isn't in use: <code>ss -tlnp | grep 5200</code></li>
+                <li>Restart Docker: <code>systemctl restart docker</code></li>
+            </ul>
+
+            <h3>❌ Connection Refused</h3>
+            <ul class="feature-list">
+                <li>Check firewall: <code>ufw status</code></li>
+                <li>Check container running: <code>docker ps</code></li>
+                <li>Check ports exposed: <code>docker port eaglercraft-server</code></li>
+            </ul>
+
+            <h3>❌ High CPU Usage</h3>
+            <ul class="feature-list">
+                <li>Check player count</li>
+                <li>Lower world size/render distance</li>
+                <li>Upgrade to larger VPS</li>
+            </ul>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>💡 Codespaces vs VPS</h3>
+                    <p>Compare hosting options.</p>
+                    <a href="index.html" class="btn">Back Home</a>
+                </div>
+                <div class="card">
+                    <h3>📚 Docker Setup</h3>
+                    <p>Docker-specific guide.</p>
+                    <a href="docker.html" class="btn">Docker Guide</a>
+                </div>
+                <div class="card">
+                    <h3>❓ Have Questions?</h3>
+                    <p>Check FAQ or support.</p>
+                    <a href="faq.html" class="btn">FAQ</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eaglercraft Codespaces Guide | <a href="https://github.com/kwolfdaas/Eaglercraft-Server-Totortial">View on GitHub</a></p>
+    </footer>
+</body>
+</html>
