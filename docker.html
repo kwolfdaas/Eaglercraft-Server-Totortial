@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Method — Eaglercraft Codespaces Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docker.html" class="active">Docker Method</a></li>
+                <li><a href="sealos.html">One-Click</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="safety.html">Safety</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>🐳 Method 1 — Docker (Codespaces Edition)</h1>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;"><strong>The cleanest, most reliable way to host Eaglercraft in 2026</strong></p>
+            
+            <div class="info-box">
+                <p>This is the rewritten version of the original Docker method, but optimized for GitHub Codespaces. You'll have a fully working server running in your browser within 5-10 minutes.</p>
+            </div>
+
+            <h2>✅ Step 1 — Create a Codespace</h2>
+            <ol class="step-list">
+                <li>Open your GitHub repo</li>
+                <li>Click <strong>Code → Codespaces → Create Codespace</strong></li>
+                <li>Wait for it to load</li>
+                <li>Docker is already installed — no setup needed.</li>
+            </ol>
+
+            <h2>📁 Step 2 — Create Server Folders</h2>
+            <p>Open the terminal and run:</p>
+            <pre><code>mkdir -p ~/eaglercraft-server/{world,world_nether,world_the_end}
+cd ~/eaglercraft-server</code></pre>
+            <p>This creates the folder structure where Minecraft world data will be stored.</p>
+
+            <h2>📝 Step 3 — Create docker-compose.yml</h2>
+            <p>Run:</p>
+            <pre><code>nano docker-compose.yml</code></pre>
+            <p>Paste this entire block:</p>
+            <pre><code>version: '3.8'
+
+services:
+  eaglercraft:
+    image: ghcr.io/yangchuansheng/eaglerx1.8server:1.12.1
+    container_name: eaglercraft-server
+    ports:
+      - "5200:5200"
+      - "5201:5201"
+    volumes:
+      - ./world:/world
+      - ./world_nether:/world_nether
+      - ./world_the_end:/world_the_end
+    restart: unless-stopped</code></pre>
+
+            <h3>What This Does:</h3>
+            <ul class="feature-list">
+                <li><strong>image:</strong> Uses the official Eaglercraft Docker image (version 1.12.1)</li>
+                <li><strong>ports:</strong> Exposes ports 5200 (server list) and 5201 (direct play)</li>
+                <li><strong>volumes:</strong> Persists world data so it survives container restarts</li>
+                <li><strong>restart:</strong> Automatically restarts if it crashes</li>
+            </ul>
+
+            <h3>Save the file:</h3>
+            <ul class="feature-list">
+                <li>Press <strong>CTRL + O</strong>, then <strong>Enter</strong></li>
+                <li>Press <strong>CTRL + X</strong></li>
+            </ul>
+
+            <h2>▶️ Step 4 — Start the Server</h2>
+            <pre><code>docker-compose up -d</code></pre>
+            <p>The <code>-d</code> flag runs it in the background (detached mode).</p>
+
+            <h2>📜 Step 5 — View Logs</h2>
+            <pre><code>docker-compose logs -f</code></pre>
+            <p>You should see the server boot normally. Press <strong>CTRL + C</strong> to exit logs.</p>
+
+            <p style="margin: 1.5rem 0;"><strong>Expected output:</strong></p>
+            <pre><code>eaglercraft-server  | Starting Minecraft server...
+eaglercraft-server  | [09:15:23] [Server thread/INFO]: Done (2.345s)!</code></pre>
+
+            <h2>🌐 Step 6 — Expose Ports in Codespaces</h2>
+            <p>Codespaces auto-detects ports, but if not:</p>
+            <ol class="step-list">
+                <li>Click the <strong>PORTS</strong> tab in the bottom panel</li>
+                <li>Add ports <strong>5200</strong> and <strong>5201</strong></li>
+                <li>Set both to <strong>Public</strong> (click the icon next to each)</li>
+            </ol>
+
+            <p>You will now see URLs like:</p>
+            <pre><code>https://5201-yourcodespaceid.github.dev</code></pre>
+
+            <div class="info-box">
+                <p><strong>🔐 Automatic Security:</strong> Codespaces automatically gives you HTTPS + WSS + SSL certificates. You do not need Nginx or Certbot.</p>
+            </div>
+
+            <h2>🎮 Step 7 — Connect to Your Server</h2>
+
+            <h3>Method A — Add to Server List (Port 5200)</h3>
+            <p>In Eaglercraft Multiplayer:</p>
+            <ol class="step-list">
+                <li>Click <strong>Multiplayer</strong></li>
+                <li>Click <strong>Add Server</strong></li>
+                <li>Paste this URL:</li>
+            </ol>
+            <pre><code>wss://5200-yourcodespaceid.github.dev</code></pre>
+
+            <h3>Method B — Direct Connect (Port 5201)</h3>
+            <p>Open in your browser (while in Codespaces):</p>
+            <pre><code>https://5201-yourcodespaceid.github.dev</code></pre>
+            <p>Codespaces automatically upgrades WebSockets to <code>wss://</code>.</p>
+
+            <h2>🛠️ Troubleshooting</h2>
+
+            <h3>Server won't start?</h3>
+            <pre><code>docker-compose logs --tail 50</code></pre>
+            <p>Check if port is already in use or image failed to pull.</p>
+
+            <h3>Can't connect?</h3>
+            <ul class="feature-list">
+                <li>Make sure ports are set to <strong>Public</strong></li>
+                <li>Check if server is running: <code>docker-compose ps</code></li>
+                <li>Verify wss:// URL includes the correct port</li>
+            </ul>
+
+            <h3>Restart the server:</h3>
+            <pre><code>docker-compose restart</code></pre>
+
+            <h3>Stop the server:</h3>
+            <pre><code>docker-compose down</code></pre>
+
+            <h2>📂 Full Folder Structure</h2>
+            <pre><code>eaglercraft-server/
+│
+├── docker-compose.yml
+│
+├── world/
+├── world_nether/
+└── world_the_end/</code></pre>
+
+            <h2>✨ You're Done!</h2>
+            <p>Your Eaglercraft server is now hosting on GitHub Codespaces with automatic HTTPS and WebSocket support.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📖 Next Steps</h3>
+                    <p>Learn how the architecture works.</p>
+                    <a href="architecture.html" class="btn">View Architecture</a>
+                </div>
+                <div class="card">
+                    <h3>⚡ Alternative Method</h3>
+                    <p>Try the one-click Sealos deployment.</p>
+                    <a href="sealos.html" class="btn">View Sealos</a>
+                </div>
+                <div class="card">
+                    <h3>🏠 Back Home</h3>
+                    <p>Return to the main guide.</p>
+                    <a href="index.html" class="btn">Back Home</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Eaglercraft Codespaces Guide | <a href="https://github.com/lax1mus/Eaglercraft-Server-Totortial">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

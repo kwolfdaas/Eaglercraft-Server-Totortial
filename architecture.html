@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works — Eaglercraft Codespaces Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docker.html">Docker Method</a></li>
+                <li><a href="sealos.html">One-Click</a></li>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+                <li><a href="safety.html">Safety</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>🧠 How Eaglercraft Multiplayer Works (Simple Version)</h1>
+            
+            <h2>The Problem</h2>
+            <p>Eaglercraft cannot connect directly to a Minecraft server because <strong>browsers cannot open TCP sockets</strong>. They can only use HTTP/HTTPS and WebSocket.</p>
+
+            <h2>The Solution</h2>
+            <div class="code-block">
+                <pre>Browser (WebSocket) → Proxy/Translator → Minecraft Server (TCP)</pre>
+            </div>
+            <p>Codespaces runs all three pieces inside one Docker container:</p>
+            <ul>
+                <li><strong>Browser</strong> — You playing Eaglercraft in your web browser</li>
+                <li><strong>WebSocket</strong> — Secure connection from browser to Codespaces (wss://)</li>
+                <li><strong>Proxy</strong> — Converts WebSocket packets to Minecraft protocol</li>
+                <li><strong>Minecraft Server</strong> — Spigot or Paper in offline mode</li>
+            </ul>
+
+            <h2>Why Codespaces?</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Codespaces</th>
+                        <th>VPS</th>
+                        <th>Your Computer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cost</td>
+                        <td>Free (120 hours/month)</td>
+                        <td>$5-20/month</td>
+                        <td>Free (but running 24/7)</td>
+                    </tr>
+                    <tr>
+                        <td>HTTPS</td>
+                        <td>Automatic ✅</td>
+                        <td>Certbot required</td>
+                        <td>Difficult</td>
+                    </tr>
+                    <tr>
+                        <td>WSS (Secure WebSocket)</td>
+                        <td>Automatic ✅</td>
+                        <td>Requires Nginx</td>
+                        <td>Difficult</td>
+                    </tr>
+                    <tr>
+                        <td>Docker</td>
+                        <td>Built-in ✅</td>
+                        <td>Must install</td>
+                        <td>Must install</td>
+                    </tr>
+                    <tr>
+                        <td>Port Forwarding</td>
+                        <td>Automatic ✅</td>
+                        <td>Manual config</td>
+                        <td>Manual config</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Server Architecture Diagram</h2>
+            <div class="diagram">
+                <pre>┌─────────────────────────────────────────────────────────────────┐
+│                     GITHUB CODESPACES                            │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │          Docker Container                                │  │
+│  │                                                           │  │
+│  │  ┌────────────────────────────────────────────────────┐ │  │
+│  │  │  EaglercraftX Server (Port 5200/5201)           │ │  │
+│  │  │  ├─ WebSocket Receiver (wss://)                │ │  │
+│  │  │  ├─ Packet Translator                          │ │  │
+│  │  │  └─ Minecraft Protocol Handler                 │ │  │
+│  │  │                                                 │ │  │
+│  │  │  ┌────────────────────────────────────────┐   │ │  │
+│  │  │  │  Spigot/Paper Server (Port 25565)    │   │ │  │
+│  │  │  │  ├─ World files: /world, etc.        │   │ │  │
+│  │  │  │  ├─ Plugins                          │   │ │  │
+│  │  │  └─ └─ Server config                    │   │ │  │
+│  │  └────────────────────────────────────────────────────┘ │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                  │
+│  HTTPS + WSS = ✅ Automatic                                    │
+│  Persist files = ✅ Volume mounts                              │
+└─────────────────────────────────────────────────────────────────┘
+
+         ↓ Public URL ↓
+
+    ┌─────────────────────┐
+    │   Your Browser      │
+    │  (Eaglercraft)      │
+    │                     │
+    │  wss://connection   │
+    └─────────────────────┘
+</pre>
+            </div>
+
+            <h2>What Happens When You Connect</h2>
+            <ol>
+                <li>You open Eaglercraft in your browser</li>
+                <li>You add your Codespaces URL: <code>wss://PORT-CODESPACE.github.dev</code></li>
+                <li>Browser opens WebSocket connection (automatically secure, wss://)</li>
+                <li>EaglercraftX server receives connection</li>
+                <li>Translator converts browser packets → Minecraft packets</li>
+                <li>Spigot/Paper server processes them normally</li>
+                <li>You play Minecraft in your browser, connected to your server</li>
+            </ol>
+
+            <h2>File Persistence</h2>
+            <p>Codespaces stores files on GitHub servers. Your world data is saved in Docker volumes:</p>
+            <ul>
+                <li><code>./world</code> — Main world and player data</li>
+                <li><code>./world_nether</code> — Nether dimension</li>
+                <li><code>./world_the_end</code> — End dimension</li>
+            </ul>
+            <p>These persist as long as your Codespace exists (even if you close the browser).</p>
+
+            <h2>Networking Flow</h2>
+            <div class="code-block">
+                <pre>Internet
+    ↓
+GitHub.dev DNS
+    ↓
+Codespaces Public Port (5200/5201)
+    ↓
+Docker Container
+    ↓
+EaglercraftX Server (Port 5200/5201 inside container)
+    ↓
+Spigot/Paper Backend (Port 25565 inside container)
+    ↓
+Player connects ✅</pre>
+            </div>
+
+            <h2>Why This Is Better Than Old Methods</h2>
+            <ul>
+                <li><strong>No reverse proxy needed</strong> — Codespaces handles it</li>
+                <li><strong>No SSL certificates</strong> — GitHub manages it</li>
+                <li><strong>No domain registration</strong> — You get *.github.dev free</li>
+                <li><strong>No VPS cost</strong> — Free tier includes 120 hours/month</li>
+                <li><strong>Everything in one container</strong> — No juggling multiple services</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eaglercraft Codespaces Guide. Not affiliated with Microsoft or Mojang.</p>
+    </footer>
+</body>
+</html>

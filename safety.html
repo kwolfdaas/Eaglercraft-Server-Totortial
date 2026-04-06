@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety & Legal — Eaglercraft Codespaces Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docker.html">Docker Method</a></li>
+                <li><a href="sealos.html">One-Click</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="safety.html" class="active">Safety</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>⚠️ Safety & Legal Notes</h1>
+
+            <h2>Legal Status</h2>
+            <div class="warning-box">
+                <p><strong>Important:</strong> Microsoft considers Eaglercraft a copyright-infringing derivative of Minecraft. Playing or hosting it exists in a legal gray area.</p>
+            </div>
+
+            <h3>Private Use (Low Risk)</h3>
+            <ul>
+                <li>Playing single-player or peer-to-peer Shared Worlds = Very low legal risk</li>
+                <li>Hosting a small private server for friends = Still relatively low risk</li>
+                <li>Keeping a server active for years without advertising = Generally safe</li>
+            </ul>
+
+            <h3>Public Hosting (Higher Risk)</h3>
+            <ul>
+                <li>Publicly listing your server URL = Higher visibility, higher takedown risk</li>
+                <li>Advertising it on Discord/forums = Increased likelihood of DMCA notice</li>
+                <li>Operating an open public server for 6+ months = Higher chance of copyright claim</li>
+            </ul>
+
+            <h3>Microsoft's Known Actions</h3>
+            <ul>
+                <li>✅ Sent DMCA takedowns to public Eaglercraft servers</li>
+                <li>✅ Removed Eaglercraft from GitHub repos and launchers</li>
+                <li>❌ NOT known to target private/small-scale usage</li>
+                <li>❌ NOT known to pursue individual players</li>
+            </ul>
+
+            <h2>🔒 Online Safety</h2>
+
+            <h3>Before you download Eaglercraft:</h3>
+            <ul>
+                <li><strong>Only download from official sources:</strong>
+                    <ul>
+                        <li>GitHub official repos</li>
+                        <li>Official Eaglercraft website</li>
+                        <li>Trusted launcher distributions</li>
+                    </ul>
+                </li>
+                <li><strong>Avoid:</strong>
+                    <ul>
+                        <li>Random "unblocked games" websites</li>
+                        <li>Sketchy download mirrors</li>
+                        <li>Anything asking for passwords or personal info</li>
+                    </ul>
+                </li>
+                <li><strong>Check for malware:</strong>
+                    <ul>
+                        <li>Use VirusTotal if you're unsure about a download</li>
+                        <li>Always verify file checksums (SHA-256) if provided</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Voice Chat Warnings</h3>
+            <div class="warning-box">
+                <p><strong>Note:</strong> Eaglercraft's voice chat uses WebRTC, which can expose your real IP address to other players.</p>
+                <ul>
+                    <li>Use a VPN if you're concerned about privacy</li>
+                    <li>Only enable voice chat on trusted servers</li>
+                    <li>Be aware that server owners can see connections</li>
+                </ul>
+            </div>
+
+            <h3>Server Trust</h3>
+            <ul>
+                <li><strong>Public servers:</strong> Vary in safety and security</li>
+                <li><strong>Owner reputation:</strong> Check who is running the server</li>
+                <li><strong>No password protection:</strong> Eaglercraft servers typically don't require authentication</li>
+                <li><strong>Assumption:</strong> Anyone can join and grief (unless plugins prevent it)</li>
+            </ul>
+
+            <h2>🛡️ Codespaces Security</h2>
+
+            <h3>Your Codespace is Private By Default</h3>
+            <ul>
+                <li>✅ Only you can access your Codespace terminal</li>
+                <li>✅ Only you can restart or delete it</li>
+                <li>✅ GitHub encrypts data in transit (HTTPS/WSS)</li>
+                <li>⚠️ Port visibility is "Private" by default (change in PORTS tab if needed)</li>
+            </ul>
+
+            <h3>Making Your Server Public</h3>
+            <p>If you set a port to "Public" in Codespaces:</p>
+            <ul>
+                <li>Anyone with the URL can access it</li>
+                <li>The URL is not guessable (long random ID)</li>
+                <li>You can change visibility back to "Private" anytime</li>
+            </ul>
+
+            <h3>Best Practices</h3>
+            <ul>
+                <li>Keep your GitHub token/credentials private</li>
+                <li>Don't share your Codespace terminal access with others</li>
+                <li>Only make ports public if you intend for people to connect</li>
+                <li>Never commit passwords or API keys to your repo</li>
+            </ul>
+
+            <h2>⚖️ Fair Use & Copyright Considerations</h2>
+
+            <h3>Eaglercraft Itself</h3>
+            <ul>
+                <li>Created by ayunami2000 and contributors</li>
+                <li>Based on MCP (Minecraft Client Protocol) reverse engineering</li>
+                <li>Technically derivative of Minecraft (Microsoft property)</li>
+                <li>Exists in legal gray area due to educational/preservation value</li>
+            </ul>
+
+            <h3>Server Hosting Implications</h3>
+            <ul>
+                <li>Running it yourself = personal use (generally safer)</li>
+                <li>Running it for others = potentially more legally risky</li>
+                <li>Profiting from it = definitely illegal</li>
+                <li>Hosting indefinitely = increased exposure</li>
+            </ul>
+
+            <h3>If You Receive a Takedown Notice</h3>
+            <p>If Microsoft sends a DMCA notice to your GitHub account:</p>
+            <ol>
+                <li>GitHub will inform you and remove the repo unless you counter-claim</li>
+                <li>You can file a counter-notice if you believe it was in error</li>
+                <li>Most users simply delete the repo and move on</li>
+                <li>Private usage is generally not pursued</li>
+            </ol>
+
+            <h2>✅ Features You Can Trust</h2>
+
+            <h3>Safe to Use:</h3>
+            <ul>
+                <li>✅ Singleplayer worlds (no network risk)</li>
+                <li>✅ Peer-to-peer Shared Worlds (direct connection, no server)</li>
+                <li>✅ Private servers for friends</li>
+                <li>✅ Standard Survival/Creative modes</li>
+                <li>✅ Plugins and mods (if from trusted sources)</li>
+            </ul>
+
+            <h3>Requires Caution:</h3>
+            <ul>
+                <li>⚠️ Public servers (higher visibility = higher risk)</li>
+                <li>⚠️ Voice chat (IP exposure)</li>
+                <li>⚠️ Resource packs from unknown sources</li>
+                <li>⚠️ Long-term operation (extended exposure)</li>
+            </ul>
+
+            <h2>📋 Quick Safety Checklist</h2>
+            <ul>
+                <li>☑️ Download from official Eaglercraft sources only</li>
+                <li>☑️ Use Codespaces for hosting (no home IP exposure)</li>
+                <li>☑️ Keep your server private or limit to friends</li>
+                <li>☑️ Be aware of Microsoft's copyright claims</li>
+                <li>☑️ If concerned about privacy, use a VPN</li>
+                <li>☑️ Don't share your Codespaces admin access</li>
+                <li>☑️ Stay updated on Eaglercraft news and legal developments</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>Bottom Line:</strong> Playing Eaglercraft privately is very low-risk. Hosting it yourself using GitHub Codespaces keeps your home network private. Just be aware that Microsoft considers it copyright infringement, so don't profit from it or operate massive public servers.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eaglercraft Codespaces Guide. Not affiliated with Microsoft or Mojang.</p>
+    </footer>
+</body>
+</html>
