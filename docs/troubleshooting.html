@@ -7,15 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
+            <nav class="navbar">
         <div class="nav-container">
-            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
-            <ul class="nav-links">
+            <a href="index.html" class="logo">🎮 Eaglercraft Codespaces</a>
+            <div class="nav-controls">
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="docker.html">Docker</a></li>
+                <li><a href="sealos.html">One-Click</a></li>
+                <li><a href="vps.html">VPS</a></li>
                 <li><a href="clients.html">Clients</a></li>
                 <li><a href="performance.html">Performance</a></li>
+                <li><a href="resourcepacks.html">Resource Packs</a></li>
+                <li><a href="sharedworlds.html">Shared Worlds</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="troubleshooting.html" class="active">Support</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="credits.html">Credits</a></li>
             </ul>
         </div>
     </nav>
@@ -278,5 +295,35 @@ Common causes:
     <footer>
         <p>&copy; 2026 Eaglercraft Codespaces Guide | <a href="https://github.com/kwolfdaas/Eaglercraft-Server-Totortial">View on GitHub</a></p>
     </footer>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+            updateDarkModeButton();
+        }
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("active");
+            document.querySelector(".hamburger").classList.toggle("active");
+        }
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("navLinks").classList.remove("active");
+                document.querySelector(".hamburger").classList.remove("active");
+            });
+        });
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+        function updateDarkModeButton() {
+            const btn = document.querySelector(".dark-mode-toggle");
+            btn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+        }
+        updateDarkModeButton();
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add("active");
+            }
+        });
+    </script>
 </body>
 </html>
