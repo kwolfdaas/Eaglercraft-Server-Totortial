@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting — Eaglercraft Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="performance.html">Performance</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="troubleshooting.html" class="active">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>🔧 Troubleshooting Guide</h1>
+            <p class="tagline">Solutions to common Eaglercraft problems.</p>
+
+            <h2>Connection Issues</h2>
+
+            <h3>❌ Problem: "WebSocket Connection Failed"</h3>
+            <div class="warning-box">
+                <p><strong>This means your browser can't connect to the server.</strong></p>
+            </div>
+
+            <h4>Solution 1: Check the URL Format</h4>
+            <ul class="feature-list">
+                <li>❌ Wrong: <code>ws://example.com:5200</code></li>
+                <li>❌ Wrong: <code>http://example.com:5200</code></li>
+                <li>✅ Correct: <code>wss://example.com</code></li>
+            </ul>
+            <p>Always use <code>wss://</code> (secure WebSocket).</p>
+
+            <h4>Solution 2: Verify Server is Running</h4>
+            <div class="code-block">
+                <pre>For Codespaces Docker:
+$ docker-compose ps
+(Should show "eaglercraft-server" running)
+
+For Sealos:
+Check dashboard — app should show "Running"</pre>
+            </div>
+
+            <h4>Solution 3: Check Firewall/School Filters</h4>
+            <ul class="feature-list">
+                <li>WebSocket uses port 443 (HTTPS), which is usually allowed</li>
+                <li>Some school networks block specific domain patterns</li>
+                <li>Try: Using a VPN (not recommended at school)</li>
+                <li>Better: Try at home</li>
+            </ul>
+
+            <h4>Solution 4: Browser Compatibility</h4>
+            <ul class="feature-list">
+                <li>Try a different browser (Chrome → Firefox, etc.)</li>
+                <li>Update your browser to latest version</li>
+                <li>Clear browser cache: Ctrl+Shift+Delete</li>
+            </ul>
+
+            <h3>❌ Problem: "Connection Timed Out"</h3>
+            <p><strong>Server isn't responding.</strong></p>
+            <ul class="feature-list">
+                <li>Check if server is still running</li>
+                <li>Restart the server</li>
+                <li>Check the server logs for errors</li>
+                <li>Check your internet connection</li>
+            </ul>
+
+            <h3>❌ Problem: "Can't Connect to [Server URL]"</h3>
+            <p><strong>The domain/URL doesn't exist or is wrong.</strong></p>
+            <ul class="feature-list">
+                <li>Double-check the URL spelling</li>
+                <li>For Codespaces: Make sure the port is "Public"</li>
+                <li>Copy-paste the URL instead of typing</li>
+                <li>Try the server in your browser first (without wss:// prefix)</li>
+            </ul>
+
+            <h2>Performance Issues</h2>
+
+            <h3>❌ Problem: Very Low FPS</h3>
+            <p><strong>Game is running at 10-20 FPS.</strong></p>
+
+            <h4>Quick Fixes (Try in Order)</h4>
+            <div class="step-list">
+                <li>Close 10+ browser tabs to free RAM</li>
+                <li>Disable Chrome extensions (Settings → Extensions → toggle OFF)</li>
+                <li>Play in fullscreen mode (F11)</li>
+                <li>Turn off shaders (Options → Advanced → Off)</li>
+                <li>Lower render distance to 6-8 chunks</li>
+                <li>Restart browser completely</li>
+            </div>
+
+            <h4>Advanced Fixes</h4>
+            <ul class="feature-list">
+                <li>Enable WASM-GC in browser flags (chrome://flags)</li>
+                <li>Update browser to latest version</li>
+                <li>Disable hardware acceleration and re-enable it</li>
+                <li>Try a different client (Resent vs. CyanogenMC)</li>
+            </ul>
+
+            <h3>❌ Problem: Constant Lag Spikes</h3>
+            <p><strong>FPS drops every few seconds.</strong></p>
+            <ul class="feature-list">
+                <li>Close Discord (uses lots of resources)</li>
+                <li>Stop large downloads/uploads</li>
+                <li>Restart your router</li>
+                <li>Check your internet speed (ideally 10+ Mbps)</li>
+                <li>Try 4G/mobile hotspot to debug</li>
+            </ul>
+
+            <h3>❌ Problem: Stuttering/Freezing Randomly</h3>
+            <ul class="feature-list">
+                <li>Enable VSYNC (Options → Video Settings)</li>
+                <li>Lower render distance further</li>
+                <li>Disable fancy graphics (use Fast)</li>
+                <li>Check if your browser is updated</li>
+            </ul>
+
+            <h2>Gameplay Issues</h2>
+
+            <h3>❌ Problem: World Won't Save</h3>
+            <div class="warning-box">
+                <p><strong>Don't panic!</strong> Your world is saved locally in your browser.</p>
+            </div>
+
+            <h4>Check if World is Being Saved</h4>
+            <ul class="feature-list">
+                <li>Make changes (break a block, place one, etc.)</li>
+                <li>Leave the world (Save & Quit)</li>
+                <li>Re-enter world — changes should be there</li>
+            </ul>
+
+            <h4>If World Data is Lost</h4>
+            <p><strong>Possible causes:</strong></p>
+            <ul class="feature-list">
+                <li>You cleared browser cache/cookies</li>
+                <li>Browser local storage was wiped</li>
+                <li>You switched browsers</li>
+                <li>Temporary browser glitch</li>
+            </ul>
+
+            <p><strong>Prevention:</strong> Export your world regularly as a .ZIP file.</p>
+
+            <h3>❌ Problem: Can't Place/Break Blocks</h3>
+            <ul class="feature-list">
+                <li>Check server connection (should say "Connected" in top-left)</li>
+                <li>Check your game mode (might be in Spectator)</li>
+                <li>Rejoin the server</li>
+                <li>Restart client</li>
+            </ul>
+
+            <h3>❌ Problem: Mobs Spawning in Peaceful Mode</h3>
+            <ul class="feature-list">
+                <li>You might be on Easy/Normal mode</li>
+                <li>Change difficulty: Options → Difficulty</li>
+                <li>Save and reload</li>
+            </ul>
+
+            <h2>Audio/Voice Chat Issues</h2>
+
+            <h3>❌ Problem: Voice Chat Not Working</h3>
+
+            <h4>Solution 1: Check Browser Permissions</h4>
+            <ul class="feature-list">
+                <li>Click the camera/mic icon in address bar</li>
+                <li>Make sure Microphone is "Allowed"</li>
+                <li>If it says "Block", click and change to "Allow"</li>
+            </ul>
+
+            <h4>Solution 2: Check Server Certificate (HTTPS Required)</h4>
+            <p>Voice chat requires HTTPS (secure connection).</p>
+            <ul class="feature-list">
+                <li>Check URL starts with <code>https://</code></li>
+                <li>Codespaces always uses HTTPS ✅</li>
+                <li>Local servers need manual HTTPS setup</li>
+            </ul>
+
+            <h4>Solution 3: Check System Audio</h4>
+            <ul class="feature-list">
+                <li>Make sure microphone isn't muted (check PC volume icon)</li>
+                <li>Test in Discord or other app first</li>
+                <li>Update audio drivers</li>
+            </ul>
+
+            <h3>❌ Problem: Can't Hear Others</h3>
+            <ul class="feature-list">
+                <li>Check volume slider in-game</li>
+                <li>Check system volume is above 10%</li>
+                <li>Check speakers aren't broken</li>
+                <li>Others might have muted themselves</li>
+            </ul>
+
+            <h2>Client/Download Issues</h2>
+
+            <h3>❌ Problem: Client Won't Launch</h3>
+            <ul class="feature-list">
+                <li>Clear browser cache (Ctrl+Shift+Delete)</li>
+                <li>Try a different browser</li>
+                <li>Restart computer</li>
+                <li>Make sure JavaScript is enabled</li>
+            </ul>
+
+            <h3>❌ Problem: Client Says "Outdated Version"</h3>
+            <ul class="feature-list">
+                <li>Update Eaglercraft client to latest version</li>
+                <li>If server is old, use older client version</li>
+                <li>Check GitHub releases for version matching</li>
+            </ul>
+
+            <h3>❌ Problem: Antivirus Blocking Eaglercraft</h3>
+            <p><strong>This is a false positive.</strong> Official Eaglercraft is safe.</p>
+            <ul class="feature-list">
+                <li>Add exception to antivirus for the client</li>
+                <li>Temporarily disable antivirus (not recommended long-term)</li>
+                <li>Use VirusTotal.com to verify the file</li>
+            </ul>
+
+            <h2>Server Issues (For Server Owners)</h2>
+
+            <h3>❌ Problem: Server Crashes on Startup</h3>
+
+            <h4>For Docker (Codespaces):</h4>
+            <div class="code-block">
+                <pre>$ docker-compose logs -f
+(Look for red ERROR messages)
+
+Common causes:
+- Port already in use: Change port in docker-compose.yml
+- Out of memory: Increase allocated RAM
+- Image won't pull: Check internet or Docker Hub status</pre>
+            </div>
+
+            <h3>❌ Problem: Players Can't Connect</h3>
+            <ul class="feature-list">
+                <li>Make sure ports 5200/5201 are PUBLIC (not Private)</li>
+                <li>Check server logs for connection errors</li>
+                <li>Verify domain/URL is correct</li>
+                <li>Try connecting locally from same machine first</li>
+            </ul>
+
+            <h3>❌ Problem: World Corruption</h3>
+            <ul class="feature-list">
+                <li>Restart server (usually fixes it)</li>
+                <li>Check disk space</li>
+                <li>Restore from backup</li>
+                <li>Delete world folder and start fresh</li>
+            </ul>
+
+            <h2>Still Stuck?</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📖 Check FAQ</h3>
+                    <p>Most questions answered.</p>
+                    <a href="faq.html" class="btn">Go to FAQ</a>
+                </div>
+                <div class="card">
+                    <h3>⚡ Performance Guide</h3>
+                    <p>Optimize FPS and speed.</p>
+                    <a href="performance.html" class="btn">Performance</a>
+                </div>
+                <div class="card">
+                    <h3>🎨 Client Guide</h3>
+                    <p>Try a different client.</p>
+                    <a href="clients.html" class="btn">Clients</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eaglercraft Codespaces Guide | <a href="https://github.com/kwolfdaas/Eaglercraft-Server-Totortial">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

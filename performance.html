@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance & FPS Boosting Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="performance.html" class="active">Performance</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="troubleshooting.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>⚡ Boosting FPS in Eaglercraft (2026)</h1>
+            <p class="tagline">Complete performance optimization guide for maximum smoothness.</p>
+
+            <div class="info-box">
+                <p>Eaglercraft runs in your browser, so performance depends on browser optimization, in-game settings, and hardware. Follow this guide to get 60+ FPS.</p>
+            </div>
+
+            <h2>🚀 Quick FPS Boost Checklist</h2>
+            <div class="step-list">
+                <li><strong>Enable WASM-GC</strong> — Up to 50% FPS boost with modern browsers</li>
+                <li><strong>Close other tabs</strong> — Frees up CPU/RAM</li>
+                <li><strong>Disable Chrome extensions</strong> — Extensions use resources</li>
+                <li><strong>Use Chrome or Firefox</strong> — Best performance</li>
+                <li><strong>Play fullscreen</strong> — Less overhead than windowed</li>
+                <li><strong>Turn off shaders</strong> — Instant FPS gain</li>
+                <li><strong>Lower render distance</strong> — Biggest impact</li>
+            </div>
+
+            <h2>🌐 Browser Optimization</h2>
+
+            <h3>Step 1: Enable Hardware Acceleration</h3>
+            <p><strong>Chrome:</strong></p>
+            <ul class="feature-list">
+                <li>Settings → Advanced → System</li>
+                <li>Toggle "Use hardware acceleration" ON</li>
+                <li>Restart Chrome</li>
+            </ul>
+
+            <p><strong>Firefox:</strong></p>
+            <ul class="feature-list">
+                <li>about:config in address bar</li>
+                <li>Search: "gfx.webrender.enabled"</li>
+                <li>Set to TRUE</li>
+            </ul>
+
+            <h3>Step 2: Close Unnecessary Tabs</h3>
+            <p>Each tab uses CPU and RAM. Before playing Eaglercraft:</p>
+            <ul class="feature-list">
+                <li>❌ Close Discord, YouTube, Spotify</li>
+                <li>❌ Close unnecessary browser tabs</li>
+                <li>❌ Close background applications</li>
+                <li>✅ Keep browser clean</li>
+            </ul>
+
+            <h3>Step 3: Disable Browser Extensions</h3>
+            <p>Even "lightweight" extensions slow things down:</p>
+            <div class="code-block">
+                <pre>Chrome: (i) icon → "Manage extension on Chrome"
+Toggle all OFF before playing
+Re-enable after you're done</pre>
+            </div>
+
+            <h3>Step 4: Use Fullscreen</h3>
+            <p>Fullscreen mode reduces rendering overhead:</p>
+            <div class="code-block">
+                <pre>Press F11 to fullscreen browser
+Press F for in-game fullscreen
+This disables the browser UI</pre>
+            </div>
+
+            <h2>🎮 In-Game Settings (Huge Impact)</h2>
+
+            <h3>Lower Render Distance</h3>
+            <p><strong>BIGGEST FPS impact:</strong> Reduces chunks to render</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Render Distance</th>
+                        <th>FPS Impact</th>
+                        <th>Visibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>4 chunks</td>
+                        <td>60+ FPS</td>
+                        <td>Close-up only</td>
+                    </tr>
+                    <tr>
+                        <td>8 chunks</td>
+                        <td>40-50 FPS</td>
+                        <td>Balanced</td>
+                    </tr>
+                    <tr>
+                        <td>12 chunks</td>
+                        <td>20-30 FPS</td>
+                        <td>Far view</td>
+                    </tr>
+                    <tr>
+                        <td>16+ chunks</td>
+                        <td>10-15 FPS</td>
+                        <td>Very far</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Graphics Mode Settings</h3>
+            <ul class="feature-list">
+                <li><strong>✅ Fast Graphics</strong> — Solid FPS, good looks</li>
+                <li><strong>✅ Fancy Graphics</strong> — 20-30% FPS hit but prettier</li>
+                <li><strong>❌ Ultra Graphics</strong> — Poor FPS for most browsers</li>
+            </ul>
+
+            <h3>Additional In-Game Tweaks</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Off</th>
+                        <th>On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Clouds</strong></td>
+                        <td>+3 FPS</td>
+                        <td>Pretty but unnecessary</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mipmapping</strong></td>
+                        <td>+2 FPS</td>
+                        <td>Better far view</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anisotropic Filtering</strong></td>
+                        <td>+1 FPS</td>
+                        <td>Better texture quality</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shaders</strong></td>
+                        <td>+10 FPS</td>
+                        <td>Beautiful water/shadows</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>💻 WASM-GC (The Secret Performance Boost)</h2>
+
+            <h3>What is WASM-GC?</h3>
+            <p>WebAssembly with Garbage Collection. Modern browser feature that can boost Eaglercraft FPS by 30-50%.</p>
+
+            <h3>How to Enable WASM-GC</h3>
+            <p><strong>Chrome 119+:</strong></p>
+            <div class="code-block">
+                <pre>1. Open chrome://flags
+2. Search: "webassembly garbage collection"
+3. Set to "Enabled"
+4. Restart Chrome</pre>
+            </div>
+
+            <p><strong>Firefox 120+:</strong></p>
+            <div class="code-block">
+                <pre>1. Open about:config
+2. Search: dom.wasm_gc.enabled
+3. Set to TRUE
+4. Restart Firefox</pre>
+            </div>
+
+            <h3>Check if WASM-GC is Working</h3>
+            <p>In Eaglercraft, open Options:</p>
+            <div class="code-block">
+                <pre>If you see "WASM-GC: Enabled" = You're getting the boost
+If not, upgrade your browser</pre>
+            </div>
+
+            <h2>📱 Chromebook-Specific Optimization</h2>
+
+            <h3>Maximize Performance on Chromebooks</h3>
+            <ul class="feature-list">
+                <li>✅ Use Guest Mode (fewer processes = more FPS)</li>
+                <li>✅ Restart Chromebook before playing</li>
+                <li>✅ Close all other apps</li>
+                <li>✅ Disable accessibility features if enabled</li>
+                <li>✅ Use Chrome, not Firefox</li>
+                <li>✅ Play fullscreen</li>
+                <li>✅ Update Chrome OS to latest</li>
+            </ul>
+
+            <h2>🖥️ Device Requirements</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Playable?</th>
+                        <th>Expected FPS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Modern Gaming PC</td>
+                        <td>✅ Yes</td>
+                        <td>100+ FPS</td>
+                    </tr>
+                    <tr>
+                        <td>Decent Laptop (2020+)</td>
+                        <td>✅ Yes</td>
+                        <td>60-80 FPS</td>
+                    </tr>
+                    <tr>
+                        <td>Budget Laptop</td>
+                        <td>✅ Yes</td>
+                        <td>30-40 FPS</td>
+                    </tr>
+                    <tr>
+                        <td>Chromebook</td>
+                        <td>✅ Yes</td>
+                        <td>40-60 FPS</td>
+                    </tr>
+                    <tr>
+                        <td>iPad 2020+</td>
+                        <td>✅ Yes</td>
+                        <td>50+ FPS</td>
+                    </tr>
+                    <tr>
+                        <td>Old Netbook</td>
+                        <td>⚠️ Slow</td>
+                        <td>15-20 FPS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>🎯 FPS Tuning Profiles</h2>
+
+            <h3>Profile 1: Maximum Vanilla Performance (60+ FPS)</h3>
+            <ul class="feature-list">
+                <li>Render Distance: 4-6 chunks</li>
+                <li>Graphics: Fast</li>
+                <li>Shaders: Off</li>
+                <li>Clouds: Off</li>
+                <li>Result: Stable 60 FPS on most hardware</li>
+            </ul>
+
+            <h3>Profile 2: Balanced (50 FPS + Pretty)</h3>
+            <ul class="feature-list">
+                <li>Render Distance: 8 chunks</li>
+                <li>Graphics: Fancy</li>
+                <li>Shaders: On (light shaders)</li>
+                <li>Result: Smooth & good looking</li>
+            </ul>
+
+            <h3>Profile 3: Maximum Beauty (30+ FPS)</h3>
+            <ul class="feature-list">
+                <li>Render Distance: 12+ chunks</li>
+                <li>Graphics: Fancy/Ultra</li>
+                <li>Shaders: PBR/High-end</li>
+                <li>Result: Gorgeous but demanding</li>
+            </ul>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🎨 Client Recommendations</h3>
+                    <p>Different clients have different performance.</p>
+                    <a href="clients.html" class="btn">View Clients</a>
+                </div>
+                <div class="card">
+                    <h3>🆘 Still Having Issues?</h3>
+                    <p>Check the troubleshooting guide.</p>
+                    <a href="troubleshooting.html" class="btn">Troubleshooting</a>
+                </div>
+                <div class="card">
+                    <h3>❓ More Questions?</h3>
+                    <p>Ask in the FAQ section.</p>
+                    <a href="faq.html" class="btn">FAQ</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eaglercraft Codespaces Guide | <a href="https://github.com/kwolfdaas/Eaglercraft-Server-Totortial">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

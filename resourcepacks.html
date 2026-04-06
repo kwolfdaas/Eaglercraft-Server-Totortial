@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Packs — Eaglercraft Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🎮 Eaglercraft Codespaces</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="resourcepacks.html" class="active">Resource Packs</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="troubleshooting.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <h1>🎨 Resource Packs in Eaglercraft</h1>
+            <p class="tagline">How to install, create, and share resource packs.</p>
+
+            <h2>What is a Resource Pack?</h2>
+            <p>A resource pack customizes your Minecraft experience by changing:</p>
+            <ul class="feature-list">
+                <li>🖼️ Textures (block and item appearances)</li>
+                <li>🎵 Sounds (ambient noises, music, effects)</li>
+                <li>🔤 Fonts (chat and UI text)</li>
+                <li>🎨 Animations (water, lava, particle effects)</li>
+                <li>🌈 Colors (lighting, GUI colors)</li>
+            </ul>
+
+            <h2>How to Install a Resource Pack</h2>
+
+            <h3>Step 1: Find a Resource Pack</h3>
+            <p>Download from trusted sources:</p>
+            <ul class="feature-list">
+                <li>✅ PlanetMinecraft.com</li>
+                <li>✅ CurseForge</li>
+                <li>✅ GitHub (Eaglercraft community packs)</li>
+                <li>❌ Avoid suspicious ad-filled sites</li>
+            </ul>
+
+            <h3>Step 2: Download the .ZIP File</h3>
+            <p>Resource packs are distributed as <code>.zip</code> files.</p>
+
+            <h3>Step 3: Install to Eaglercraft</h3>
+            <p><strong>For most Eaglercraft clients:</strong></p>
+            <div class="step-list">
+                <li>Click Options</li>
+                <li>Click "Resource Packs"</li>
+                <li>Click "Open Resource Pack Folder"</li>
+                <li>Drag the .ZIP file into the folder</li>
+                <li>Reload or restart client</li>
+                <li>Select the pack from the list</li>
+                <li>Click "Done"</li>
+            </div>
+
+            <h3>Step 4: Verify Installation</h3>
+            <p>Back in-game, you should see:</p>
+            <ul class="feature-list">
+                <li>Different block textures</li>
+                <li>Different sounds if included</li>
+                <li>Overall visual change</li>
+            </ul>
+
+            <h2>Popular Resource Packs</h2>
+
+            <h3>High-Performance Packs (for better FPS)</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Pack Name</th>
+                        <th>Style</th>
+                        <th>Performance Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Faithful 32x32</strong></td>
+                        <td>Classic Minecraft (improved)</td>
+                        <td>Minimal (-0 FPS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Default++</strong></td>
+                        <td>Vanilla enhanced</td>
+                        <td>Minimal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clean Master</strong></td>
+                        <td>Ultra-clear textures</td>
+                        <td>Minimal</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Beautiful/High-End Packs</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Pack Name</th>
+                        <th>Style</th>
+                        <th>Performance Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Continuity by Contrast</strong></td>
+                        <td>Realistic and smooth</td>
+                        <td>Moderate (-10 FPS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Better Vanilla</strong></td>
+                        <td>Enhanced realism</td>
+                        <td>Moderate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cartoon</strong></td>
+                        <td>Anime-style</td>
+                        <td>Moderate</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Creating Your Own Resource Pack</h2>
+
+            <h3>Basic Structure</h3>
+            <p>A resource pack needs this folder structure:</p>
+            <div class="code-block">
+                <pre>my-resourcepack/
+├── pack.mcmeta
+├── pack.png
+└── assets/
+    └── minecraft/
+        ├── textures/
+        │   ├── blocks/
+        │   └── items/
+        └── sounds/
+            └── ambient/</pre>
+            </div>
+
+            <h3>Step 1: Create pack.mcmeta</h3>
+            <p>Text file with pack metadata:</p>
+            <div class="code-block">
+                <pre>{
+  "pack": {
+    "pack_format": 12,
+    "description": "My Awesome Resource Pack"
+  }
+}</pre>
+            </div>
+
+            <h3>Step 2: Create pack.png</h3>
+            <p>A 64x64 PNG image that shows as the icon.</p>
+
+            <h3>Step 3: Add Textures</h3>
+            <p>Create <code>textures/blocks/stone.png</code>, etc.</p>
+            <p>Textures are 16x16 PNG files.</p>
+
+            <h3>Step 4: Compress and Test</h3>
+            <ul class="feature-list">
+                <li>ZIP the folder</li>
+                <li>Test in Eaglercraft</li>
+                <li>Adjust as needed</li>
+                <li>Share!</li>
+            </ul>
+
+            <h2>Resource Pack Compatibility</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Eaglercraft Version</th>
+                        <th>Pack Format</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1.5.2</strong></td>
+                        <td>Format 3</td>
+                        <td>Older packs, less features</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1.8.8</strong></td>
+                        <td>Format 4</td>
+                        <td>Common version</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1.12.2</strong></td>
+                        <td>Format 6</td>
+                        <td>Wide pack support</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Troubleshooting Resource Packs</h2>
+
+            <h3>❌ Problem: Pack Won't Load</h3>
+            <ul class="feature-list">
+                <li>Check pack.mcmeta exists and is valid JSON</li>
+                <li>Check folder structure is correct</li>
+                <li>Verify PNG format (not JPG)</li>
+                <li>Try a known-working pack to test</li>
+            </ul>
+
+            <h3>❌ Problem: Pack Partially Works</h3>
+            <ul class="feature-list">
+                <li>Some textures might not match Eaglercraft version</li>
+                <li>Update pack to match your Eaglercraft version</li>
+                <li>Check texture file paths are lowercase</li>
+            </ul>
+
+            <h3>❌ Problem: Textures Look Wrong</h3>
+            <ul class="feature-list">
+                <li>Texture resolution mismatch (16x16 vs 32x32)</li>
+                <li>Text pack might be for different Minecraft version</li>
+                <li>Try scaling texture to correct size</li>
+            </ul>
+
+            <h2>Performance Tips</h2>
+
+            <ul class="feature-list">
+                <li>✅ Low-res packs (16x16) = better FPS</li>
+                <li>✅ Packs without sounds = lighter</li>
+                <li>✅ Disable animated textures if laggy</li>
+                <li>❌ Multiple packs stack = performance hit</li>
+                <li>❌ Large texture files = slower loading</li>
+            </ul>
+
+            <h2>Sharing Your Pack</h2>
+
+            <p>To share your resource pack:</p>
+            <ol class="step-list">
+                <li>Compress as ZIP file</li>
+                <li>Upload to CurseForge or PlanetMinecraft</li>
+                <li>Or upload to GitHub</li>
+                <li>Share the download link</li>
+            </ol>
+
+            <h3>Sharing on GitHub (Free)</h3>
+            <div class="code-block">
+                <pre>1. Create GitHub repo
+2. Upload resourcepack.zip as release
+3. Share link to release page
+4. Anyone can download</pre>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🎨 More Customization?</h3>
+                    <p>Looking for skins or mods?</p>
+                    <a href="clients.html" class="btn">View Clients</a>
+                </div>
+                <div class="card">
+                    <h3>❓ Need Help?</h3>
+                    <p>Check the FAQ section.</p>
+                    <a href="faq.html" class="btn">FAQ</a>
+                </div>
+                <div class="card">
+                    <h3>🆘 Troubleshooting?</h3>
+                    <p>Common issues and fixes.</p>
+                    <a href="troubleshooting.html" class="btn">Support</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eaglercraft Codespaces Guide | <a href="https://github.com/kwolfdaas/Eaglercraft-Server-Totortial">View on GitHub</a></p>
+    </footer>
+</body>
+</html>
